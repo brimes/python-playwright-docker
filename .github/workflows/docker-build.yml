@@ -88,3 +88,5 @@ jobs:
             print(f'✅ Chromium ARM64 funcionando! Versão: {browser.version}')
             browser.close()
         "
+        echo "🔍 Verifying PLAYWRIGHT_BROWSERS_PATH is set correctly..."
+        docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest python -c "import os; print(f'✅ PLAYWRIGHT_BROWSERS_PATH: {os.environ.get(\"PLAYWRIGHT_BROWSERS_PATH\", \"NOT SET\")}')"
