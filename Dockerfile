@@ -5,7 +5,7 @@ FROM python:3.11-slim
 # Metadata da imagem
 LABEL maintainer="brimes"
 LABEL description="Python 3.11 with Playwright Chromium browser pre-installed"
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 
 # Variáveis de ambiente
 ENV PYTHONUNBUFFERED=1
