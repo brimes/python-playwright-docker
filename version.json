@@ -1,8 +1,11 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "python_version": "3.11",
   "playwright_version": "1.40.0",
   "browsers": ["chromium"],
-  "last_updated": "2024-01-01",
-  "description": "Python 3.11 base image with Playwright Chromium browser pre-installed"
+  "last_updated": "2025-09-08",
+  "description": "Python 3.11 base image with Playwright Chromium browser pre-installed - ARM64 support improved",
+  "changelog": {
+    "1.0.2": "Added missing ARM64 dependencies for Chromium: GTK, X11, video codecs, GPU acceleration libraries"
+  }
 }

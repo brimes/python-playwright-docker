@@ -5,7 +5,7 @@ FROM python:3.11-slim
 # Metadata da imagem
 LABEL maintainer="brimes"
 LABEL description="Python 3.11 with Playwright Chromium browser pre-installed"
-LABEL version="1.0.1"
+LABEL version="1.0.2"
 
 # Variáveis de ambiente
 ENV PYTHONUNBUFFERED=1
@@ -29,9 +29,9 @@ RUN pip install --no-cache-dir playwright==1.40.0
 # Instalar apenas o browser Chromium
 RUN playwright install chromium
 
-# Instalar dependências essenciais para Chromium
+# Instalar dependências essenciais para Chromium (incluindo ARM64)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # Dependências para Chromium
+    # Dependências essenciais para Chromium
     libnss3 \
     libnspr4 \
     libatk1.0-0 \
@@ -44,11 +44,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 \
     libxss1 \
     libasound2 \
+    # Dependências adicionais críticas para ARM64
+    libgtk-3-0 \
+    libgdk-pixbuf-2.0-0 \
+    libxfixes3 \
+    libxi6 \
+    libxrender1 \
+    libxext6 \
+    libx11-6 \
+    libxcb1 \
+    libxcursor1 \
+    libxtst6 \
+    libxkbfile1 \
+    libxinerama1 \
+    # OpenGL essencial
+    libgl1-mesa-dri \
     # Fontes essenciais
     fonts-liberation \
     fonts-unifont \
     fonts-noto-color-emoji \
-    && rm -rf /var/lib/apt/lists/*
+    fonts-dejavu-core \
+    # Limpeza final
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # Criar diretório de trabalho padrão
 WORKDIR /app
