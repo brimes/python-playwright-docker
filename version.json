@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "python_version": "3.11",
   "playwright_version": "1.40.0",
   "browsers": ["chromium"],
