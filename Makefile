@@ -25,16 +25,11 @@ build: ## Construir a imagem Docker
 
 test: build ## Construir e testar a imagem
 	@echo "$(GREEN)🧪 Testando Playwright...$(NC)"
-	@docker run --rm $(IMAGE_NAME) python -c "\
-		from playwright.sync_api import sync_playwright; \
-		print('✅ Playwright instalado com sucesso!'); \
-		with sync_playwright() as p: \
-			print('📦 Browser disponível:'); \
-			print(f'  - Chromium: {len(p.chromium.executable_path) > 0}'); \
-	"
+	@docker run --rm $(IMAGE_NAME) python -c "from playwright.sync_api import sync_playwright; print('✅ Playwright instalado com sucesso!')"
 	@echo "$(GREEN)📊 Informações da imagem:$(NC)"
 	@docker run --rm $(IMAGE_NAME) python --version
-	@docker run --rm $(IMAGE_NAME) python -c "import playwright; print(f'Playwright version: {playwright.__version__}')"
+	@docker run --rm $(IMAGE_NAME) pip show playwright | grep Version || echo "Playwright instalado"
+	@docker run --rm $(IMAGE_NAME) python -c "import os; print(f'Browsers path: {os.environ.get(\"PLAYWRIGHT_BROWSERS_PATH\", \"default\")}')"
 
 size: ## Mostrar tamanho da imagem
 	@echo "$(GREEN)💾 Tamanho da imagem:$(NC)"

@@ -53,15 +53,42 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 - **Playwright** com browser Chromium
 - **Dependências do sistema** necessárias para execução do Chromium
 - **Fontes** essenciais para renderização
-- **Usuário não-root** (`appuser`) para segurança
+- **Execução como root** - controle de usuários fica para as imagens derivadas
 
 ## 🎯 Benefícios
 
 - ⚡ **Builds mais rápidos** - Não precisa baixar o browser a cada build
 - 💾 **Imagem menor** - Apenas Chromium (mais leve que Firefox + Webkit)
-- 🔒 **Segurança** - Usuário não-root pré-configurado
+- 🔒 **Flexibilidade de usuários** - Implemente controle de usuários conforme necessário
 - 📦 **Otimizado** - Apenas dependências necessárias para Chromium
 - 🔄 **Atualizado** - Builds automáticos semanais
+
+## 👤 Controle de Usuários
+
+Esta imagem base executa como **root** por design. Isso permite que você:
+
+- **Configure usuários** conforme suas necessidades específicas
+- **Instale dependências** sem problemas de permissão
+- **Customize permissões** para seu ambiente
+
+### Exemplo com usuário não-root:
+```dockerfile
+FROM ghcr.io/brimes/python-playwright-docker:latest
+
+# Instalar dependências como root
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Criar e configurar usuário
+RUN adduser --disabled-password appuser && \
+    chown -R appuser:appuser /app
+
+# Trocar para usuário não-root
+USER appuser
+
+# Copiar aplicação
+COPY ./app ./app
+```
 
 ## 🏗️ Desenvolvimento Local
 

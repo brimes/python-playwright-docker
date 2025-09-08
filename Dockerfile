@@ -53,16 +53,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Criar diretório de trabalho padrão
 WORKDIR /app
 
-# Criar usuário não-root para segurança
-RUN adduser --disabled-password --gecos '' appuser && \
-    chown -R appuser:appuser /app && \
-    chown -R appuser:appuser /ms-playwright
-
 # Verificar instalação do Playwright
-RUN su appuser -c "python -c 'from playwright.sync_api import sync_playwright; print(\"Playwright instalado com sucesso!\")'"
-
-# Mudar para usuário não-root
-USER appuser
+RUN python -c "from playwright.sync_api import sync_playwright; print('Playwright instalado com sucesso!')"
 
 # Comando padrão (pode ser sobrescrito)
 CMD ["python", "--version"]
