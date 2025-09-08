@@ -1,0 +1,33 @@
+# Logs de build
+*.log
+
+# Cache do Docker
+.docker/
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Make
+.make/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env

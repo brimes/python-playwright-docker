@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "python_version": "3.11",
+  "playwright_version": "1.40.0",
+  "browsers": ["chromium"],
+  "last_updated": "2024-01-01",
+  "description": "Python 3.11 base image with Playwright Chromium browser pre-installed"
+}

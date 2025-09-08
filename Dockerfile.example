@@ -1,0 +1,18 @@
+# Dockerfile otimizado usando a imagem base
+FROM ghcr.io/brimes/python-playwirght-docker:latest
+
+# Definir diretório de trabalho
+WORKDIR /app
+
+# Copiar requirements e instalar dependências Python específicas do projeto
+COPY requirements.txt .
+RUN pip install --no-cache-dir --timeout 300 --retries 3 -r requirements.txt
+
+# Copiar código da aplicação
+COPY ./app ./app
+
+# Expor porta
+EXPOSE 8000
+
+# Comando para iniciar a aplicação
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
