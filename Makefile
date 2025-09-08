@@ -2,7 +2,7 @@
 
 # Variáveis
 IMAGE_NAME = python-playwright-base
-REGISTRY = ghcr.io/brimes/python-playwirght-docker
+REGISTRY = ghcr.io/brimes/python-playwright-docker
 TAG = latest
 
 # Cores para output

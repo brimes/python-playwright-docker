@@ -1,14 +1,15 @@
 # Python Playwright Docker Base Image
 
-Esta é uma imagem Docker base que contém Python 3.11 com Playwright e o browser Chromium pré-instalado. Use esta imagem como base para seus projetos que utilizam Playwright, evitando o tempo de download e instalação do browser a cada build.
+Esta é uma imagem Docker base que contém Python 3.11 com Playwright e o br# Ou manualmente
+docker run --rm ghcr.io/brimes/python-playwright-docker:latest python -c "from playwright.sync_api import sync_playwright; print('✅ Playwright funcionando!')"wser Chromium pré-instalado. Use esta imagem como base para seus projetos que utilizam Playwright, evitando o tempo de download e instalação do browser a cada build.
 
 ## 🚀 Uso Rápido
 
 ### Teste Local
 ```bash
 # Clonar o repositório
-git clone https://github.com/brimes/python-playwirght-docker.git
-cd python-playwirght-docker
+git clone https://github.com/brimes/python-playwright-docker.git
+cd python-playwright-docker
 
 # Testar a imagem
 make test
@@ -20,7 +21,7 @@ No seu projeto atual, substitua o Dockerfile por:
 
 ```dockerfile
 # Use a imagem base com Playwright pré-instalado
-FROM ghcr.io/brimes/python-playwirght-docker:latest
+FROM ghcr.io/brimes/python-playwright-docker:latest
 
 # Definir diretório de trabalho
 WORKDIR /app
@@ -110,7 +111,9 @@ docker build -t python-playwright-base .
 make test
 
 # Ou manualmente
-docker run --rm ghcr.io/brimes/python-playwirght-docker:latest python -c "from playwright.sync_api import sync_playwright; print('✅ Playwright funcionando!')"
+```bash
+docker run --rm ghcr.io/brimes/python-playwright-docker:latest python -c "from playwright.sync_api import sync_playwright; print('✅ Playwright funcionando!')"
+```
 ```
 
 ### Testes Avançados
@@ -141,7 +144,7 @@ COPY ./app ./app
 
 ### Depois (usando a imagem base)
 ```dockerfile
-FROM ghcr.io/brimes/python-playwirght-docker:latest
+FROM ghcr.io/brimes/python-playwright-docker:latest
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./app ./app

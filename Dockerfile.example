@@ -1,5 +1,5 @@
 # Dockerfile otimizado usando a imagem base
-FROM ghcr.io/brimes/python-playwirght-docker:latest
+FROM ghcr.io/brimes/python-playwright-docker:latest
 
 # Definir diretório de trabalho
 WORKDIR /app
